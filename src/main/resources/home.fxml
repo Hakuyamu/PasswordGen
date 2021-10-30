@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.embed.swing.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.leonheuer.pwgen.controller.HomeController">
+   <children>
+      <Slider fx:id="sLength" blockIncrement="1.0" layoutX="81.0" layoutY="68.0" majorTickUnit="8.0" max="32.0" onMouseReleased="#onLengthReleased" prefHeight="14.0" prefWidth="293.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="16.0">
+         <tooltip>
+            <Tooltip text="Length of passwords" />
+         </tooltip></Slider>
+      <Label layoutX="19.0" layoutY="60.0" text="Length" />
+      <CheckBox fx:id="cbCaps" layoutX="19.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#onCapsClick" text="A-Z">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <tooltip>
+            <Tooltip text="Use caps" />
+         </tooltip>
+      </CheckBox>
+      <CheckBox fx:id="cbSmall" layoutX="103.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#onSmallClick" text="a-z">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <tooltip>
+            <Tooltip text="Use small letters" />
+         </tooltip>
+      </CheckBox>
+      <CheckBox fx:id="cbNums" layoutX="194.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#onNumsClick" text="1-9">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <tooltip>
+            <Tooltip text="Use numbers" />
+         </tooltip>
+      </CheckBox>
+      <CheckBox fx:id="cbChars" layoutX="283.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#onCharsClick" text=") ? , $">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <tooltip>
+            <Tooltip text="Use special characters" />
+         </tooltip>
+      </CheckBox>
+      <TextArea fx:id="taOutput" editable="false" layoutX="81.0" layoutY="120.0" prefHeight="230.0" prefWidth="487.0" promptText="Output">
+         <font>
+            <Font name="Consolas" size="14.0" />
+         </font>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#onOutputClear" text="Clear output" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
+      </TextArea>
+      <ProgressBar fx:id="pbProgress" layoutX="81.0" layoutY="361.0" prefHeight="18.0" prefWidth="424.0" progress="0.0" />
+      <Label fx:id="lTime" layoutX="514.0" layoutY="362.0" text="Time:" />
+      <Slider fx:id="sAmount" blockIncrement="1.0" layoutX="31.0" layoutY="147.0" majorTickUnit="5.0" max="10.0" minorTickCount="4" onMouseReleased="#onAmountReleased" orientation="VERTICAL" prefHeight="223.0" prefWidth="14.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0">
+         <tooltip>
+            <Tooltip text="Amount of passwords" />
+         </tooltip></Slider>
+      <Label layoutX="16.0" layoutY="120.0" text="Amount" />
+      <Button fx:id="bGenerate" layoutX="399.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#onGenerateClick" prefHeight="53.0" prefWidth="169.0" text="Generate">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <tooltip>
+            <Tooltip text="Generate and copy to output" />
+         </tooltip>
+      </Button>
+      <CheckBox fx:id="cbWindows" layoutX="422.0" layoutY="74.0" mnemonicParsing="false" onMouseClicked="#onWindowsClick" text="Start with Windows" />
+   </children>
+</AnchorPane>
