@@ -1,7 +1,6 @@
 package de.leonheuer.pwgen.manager;
 
 
-import de.leonheuer.pwgen.PasswordGen;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -25,6 +24,7 @@ public class DataManager {
     public DataManager() {
         File dir = new File(path);
         if (!dir.exists()) {
+            //noinspection ResultOfMethodCallIgnored
             dir.mkdirs();
         }
 
@@ -41,8 +41,8 @@ public class DataManager {
             numbers = Boolean.parseBoolean((String) data.get("numbers"));
             chars = Boolean.parseBoolean((String) data.get("chars"));
             windows = Boolean.parseBoolean((String) data.get("windows"));
-            length = new Long((long) data.get("length")).intValue();
-            amount = new Long((long) data.get("amount")).intValue();
+            length = Long.valueOf((long) data.get("length")).intValue();
+            amount = Long.valueOf((long) data.get("amount")).intValue();
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
@@ -53,6 +53,7 @@ public class DataManager {
         File pref = new File(path, "preferences.json");
         if (!pref.exists()) {
             try {
+                //noinspection ResultOfMethodCallIgnored
                 pref.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();

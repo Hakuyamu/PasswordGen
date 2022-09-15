@@ -3,11 +3,14 @@ package de.leonheuer.pwgen.controller;
 import de.leonheuer.pwgen.PasswordGen;
 import de.leonheuer.pwgen.util.Util;
 import javafx.application.Platform;
+import org.jetbrains.annotations.NotNull;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 
 public class TrayController {
 
@@ -15,12 +18,16 @@ public class TrayController {
     private final SystemTray tray;
     private final TrayIcon icon;
 
-    public TrayController(PasswordGen main) throws IOException, AWTException {
+    public TrayController(@NotNull PasswordGen main) throws IOException, AWTException {
         this.main = main;
         Toolkit.getDefaultToolkit();
 
         tray = SystemTray.getSystemTray();
-        Image img = ImageIO.read(main.getClass().getClassLoader().getResource("icon.png"));
+        URL trayIcon = main.getClass().getClassLoader().getResource("tray_icon.png");
+        if (trayIcon == null) {
+            throw new FileNotFoundException("tray_icon.png could not be loaded from resources. Does it exist?");
+        }
+        Image img = ImageIO.read(trayIcon);
         icon = new TrayIcon(img);
         icon.addActionListener(event -> Platform.runLater(this::copyToClip));
 

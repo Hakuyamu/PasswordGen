@@ -3,7 +3,6 @@ package de.leonheuer.pwgen;
 import de.leonheuer.pwgen.controller.HomeController;
 import de.leonheuer.pwgen.controller.TrayController;
 import de.leonheuer.pwgen.manager.DataManager;
-import de.leonheuer.pwgen.util.Util;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +13,9 @@ import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class PasswordGen extends Application {
 
@@ -38,7 +39,11 @@ public class PasswordGen extends Application {
         stage.setTitle("PasswordGen");
         stage.setResizable(false);
         stage.setScene(new Scene(root));
-        stage.getIcons().add(new Image(getClass().getClassLoader().getResourceAsStream("icon_large.png")));
+        InputStream icon = getClass().getClassLoader().getResourceAsStream("icon_large.png");
+        if (icon == null) {
+            throw new FileNotFoundException("icon_large.png could not be loaded from resources. Does it exist?");
+        }
+        stage.getIcons().add(new Image(icon));
         stage.show();
 
         ct.onStartup();
